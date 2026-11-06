@@ -103,6 +103,8 @@ The rules describe how AdaLink works and are the basis of the ER diagram. Part A
 18. A payout may settle many products sold in delivered orders; each product sold in an order is settled by at most one payout, and only by a payout to the vendor who sold it. Delivery fees are kept by AdaLink and are never paid out.
 19. A payout's gross amount is the quantity times the unit price paid for every product sale it settles; its commission amount applies the commission rate recorded at each sale; its net amount equals the gross amount minus the commission amount.
 
+ERDiagram Link: [https://app.diagrams.net/#G1EiZ3CjIBjuppMmLiwRLIcKxS3fizAldl#%7B%22pageId%22%3A%22ojahub-erd%22%7D]
+
 ## Scope
 
 AdaLink Ltd is a simulated online marketplace based in Lagos, Nigeria. The scenario is realistic but fictional: the organization, its people and its data are invented for this coursework, and all sample data is generated.
