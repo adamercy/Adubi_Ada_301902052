@@ -1,4 +1,4 @@
-# Adubi_Ada_301902052 Portfolio 1: Database Design and Modelling
+# Portfolio 1: Database Design and Modelling
 
 ## Case study
 
@@ -106,3 +106,5 @@ The rules describe how AdaLink works and are the basis of the ER diagram. Part A
 ## Scope
 
 AdaLink Ltd is a simulated online marketplace based in Lagos, Nigeria. The scenario is realistic but fictional: the organization, its people and its data are invented for this coursework, and all sample data is generated.
+
+Reference: [https://www.postgresql.org/docs/16/ddl-constraints.html]
