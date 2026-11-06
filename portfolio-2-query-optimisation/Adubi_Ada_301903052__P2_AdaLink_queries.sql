@@ -163,7 +163,7 @@ SELECT p.payout_id, p.vendor_id, p.gross_amount,
 FROM payout p
 WHERE p.start_date = '2026-10-19';
 
--- Q5 step 2. FIX A: rewrite as one JOIN (no index yet)
+-- Q5 step 2. FIX A: 
 EXPLAIN (ANALYZE, BUFFERS)
 SELECT p.payout_id, p.vendor_id, p.gross_amount,
        sum(oi.quantity_ordered * oi.unit_price) AS sales_total
@@ -175,7 +175,7 @@ GROUP BY p.payout_id, p.vendor_id, p.gross_amount;
 -- Q5 step 3.
 CREATE INDEX ix_order_item_payout ON order_item (payout_id);
 
--- Q5 step 4. AFTER FIX B (the original correlated query, now indexed)
+-- Q5 step 4. AFTER 
 EXPLAIN (ANALYZE, BUFFERS)
 SELECT p.payout_id, p.vendor_id, p.gross_amount,
        (SELECT sum(oi.quantity_ordered * oi.unit_price)
@@ -196,21 +196,3 @@ WHERE p.gross_amount <> t.sales_total;
 -- Q5 step 6. RESET
 DROP INDEX ix_order_item_payout;
 
-CREATE INDEX ix_orders_customer_date ON orders (customer_id, order_date DESC);   -- Q1 (refined)
-CREATE INDEX ix_orders_open          ON orders (order_date)
-    WHERE order_status IN ('pending','paid','shipped');                          -- Q2
-CREATE INDEX ix_customer_email_lower ON customer (lower(email));                 -- Q3
-CREATE INDEX ix_order_item_payout    ON order_item (payout_id);                  -- Q5
-
-CREATE MATERIALIZED VIEW mv_product_sales_monthly AS                             -- Q4
-SELECT date_trunc('month', o.order_date)::date        AS sales_month,
-       oi.product_id,
-       sum(oi.quantity_ordered)                       AS units,
-       sum(oi.quantity_ordered * oi.unit_price)       AS revenue
-FROM order_item oi
-JOIN orders o ON o.order_id = oi.order_id
-WHERE o.order_status = 'delivered'
-GROUP BY 1, 2;
-CREATE INDEX ix_mv_sales_month ON mv_product_sales_monthly (sales_month);
-
-ANALYZE;
