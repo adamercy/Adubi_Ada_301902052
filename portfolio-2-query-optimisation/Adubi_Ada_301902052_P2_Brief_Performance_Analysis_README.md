@@ -1,4 +1,6 @@
-# Adubi_Ada_301902052 Portfolio 2: Brief Performance Analysis
+# Portfolio 2: Query Processing and Optimisation
+
+## Performance Analysis
 
 I tested five AdaLink queries to see how much indexing and other changes could speed them up. Four became 42 to 913 times faster; the quarterly sales report did not get faster with indexes and only improved with a materialised view.
 
@@ -28,4 +30,4 @@ Q4 was the most interesting result. Three indexes cut the pages read from 165,33
 
 Q5 showed that how a query is written can matter more than an index. The correlated subquery scanned all 600,000 order lines once per payout, 200 times over, and took almost 30 seconds. Rewritten as one JOIN it took 272.7 ms; with an index on payout\_id, the original took 32.5 ms.
 
-
+Reference: [https://www.postgresql.org/docs/16/using-explain.html]
