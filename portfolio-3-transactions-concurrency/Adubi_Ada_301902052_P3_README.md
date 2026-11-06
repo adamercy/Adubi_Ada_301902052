@@ -1,4 +1,4 @@
-# Adubi_Ada_301902052 Portfolio 2: Transactions
+# Portfolio 3: Transactions and Concurrency
 
 In this portfolio I demonstrated PostgreSQL transactions on the AdaLink database, with one short example each for **commit**, **rollback**, **isolation** and **concurrency control**.
 
@@ -32,4 +32,9 @@ I opened two Query Tool tabs on the `adalink` database. Each tab has its own con
 **Isolation.** Under PostgreSQL's default level, Read Committed, Session B never saw A's uncommitted sale (no dirty read). It saw the new stock only after A committed.
 
 **Concurrency control.** If two customers buy the same phone at once, both could read 7 and write 6, losing a sale. PostgreSQL's row-level lock made Session B wait until A committed, then apply its update to A's result, so the stock ended at 5 and both sales counted.
+
+## References
+- [https://www.postgresql.org/docs/16/tutorial-transactions.html]
+- [https://www.postgresql.org/docs/16/transaction-iso.html]
+- [https://www.postgresql.org/docs/16/indexes-unique.html]
 
