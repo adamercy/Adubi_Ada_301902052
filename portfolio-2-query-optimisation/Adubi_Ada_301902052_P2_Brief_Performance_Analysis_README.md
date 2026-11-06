@@ -28,11 +28,4 @@ Q4 was the most interesting result. Three indexes cut the pages read from 165,33
 
 Q5 showed that how a query is written can matter more than an index. The correlated subquery scanned all 600,000 order lines once per payout, 200 times over, and took almost 30 seconds. Rewritten as one JOIN it took 272.7 ms; with an index on payout\_id, the original took 32.5 ms.
 
-## 4. What I recommend
-
-I would keep the four indexes (on customer\_id, the partial index, lower(email) and payout\_id) and the materialised view. Each index uses disk space and slows down inserts and updates, but AdaLink reads orders far more often than it writes them, so the trade is worth it.
-
-I would also change Q1's index to (customer\_id, order\_date DESC) to remove its remaining sort, refresh the materialised view every night because it misses new sales until then, and keep the payout audit as a JOIN so it does not depend on its index.
-
-These are single runs on my own computer with generated data, so the exact times would differ on a real server; the changes in the plans and pages read are what matter.
 
