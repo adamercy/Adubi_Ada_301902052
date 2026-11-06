@@ -107,4 +107,4 @@ The rules describe how AdaLink works and are the basis of the ER diagram. Part A
 
 AdaLink Ltd is a simulated online marketplace based in Lagos, Nigeria. The scenario is realistic but fictional: the organization, its people and its data are invented for this coursework, and all sample data is generated.
 
-Reference: [https://www.postgresql.org/docs/16/ddl-constraints.html]
+Reference: [https://www.postgresql.org/docs/18/ddl-constraints.html]
