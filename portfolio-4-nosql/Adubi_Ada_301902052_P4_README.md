@@ -1,4 +1,4 @@
-# Portfolio 4: NoSQL and Advanced Data Model (MongoDB)
+# Portfolio 4: NoSQL and Advanced Data Models (MongoDB)
 
 In this portfolio I built a **document model** in MongoDB for the same AdaLink marketplace. MongoDB holds the data whose shape varies or grows as a stream of events; PostgreSQL keeps the money, stock and orders.
 
