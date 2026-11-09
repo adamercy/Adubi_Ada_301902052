@@ -30,4 +30,5 @@ Q4 was the most interesting result. Three indexes cut the pages read from 165,33
 
 Q5 showed that how a query is written can matter more than an index. The correlated subquery scanned all 600,000 order lines once per payout, 200 times over, and took almost 30 seconds. Rewritten as one JOIN it took 272.7 ms; with an index on payout\_id, the original took 32.5 ms.
 
-Reference: [https://www.postgresql.org/docs/18/using-explain.html]
+## Reference: 
+- [https://www.postgresql.org/docs/18/using-explain.html]
