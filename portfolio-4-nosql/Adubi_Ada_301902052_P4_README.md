@@ -16,15 +16,15 @@ Product 777 has `{ brand: "Tecno", ram: "8 GB", storage: "128 GB" }`, while a ba
 
 ## Implementation and results
 
-I ran the schema script and imported the files in MongoDB Compass ([schema](screenshots/schema.png), [import](screenshots/import.png)), then ran each query in the mongosh panel.
+I ran the schema script and imported the files in MongoDB Compass, then ran each query in the mongosh panel.
 
-| Query | What it does | Result | Evidence |
-| --- | --- | --- | --- |
-| Q1 Find | Phones with 8 GB RAM, cheapest first | 5 products, from ₦137,750 | [Q1](screenshots/Q1.png) |
-| Q2 Insert | Customer 9 reviews her LG TV, then the same insert again | Saved; repeat refused with `E11000 duplicate key error` | [Q2](screenshots/Q2.png), [Q2b](screenshots/Q2b.png) |
-| Q3 Aggregate | Five best-rated products with 30+ reviews | Top: Binatone Blender, 4.4 from 54 reviews | [Q3](screenshots/Q3.png) |
-| Q4 Update | `$push` a "returned" event onto parcel ADL000271557 | 1 document modified | [Q4](screenshots/Q4.png) |
-| Q5 Read | That parcel's full history | 7 events, "created" to "returned" | [Q5](screenshots/Q5.png) |
+| Query | What it does | Result |
+| --- | --- | --- |
+| Q1 Find | Phones with 8 GB RAM, cheapest first | 5 products, from ₦137,750 |
+| Q2 Insert | Customer 9 reviews her LG TV, then the same insert again | Saved; repeat refused with `E11000 duplicate key error` |
+| Q3 Aggregate | Five best-rated products with 30+ reviews | Top: Binatone Blender, 4.4 from 54 reviews |
+| Q4 Update | `$push` a "returned" event onto parcel ADL000271557 | 1 document modified |
+| Q5 Read | That parcel's full history | 7 events, "created" to "returned" |
 
 ## Why the document model suits this data
 
@@ -33,3 +33,7 @@ I ran the schema script and imported the files in MongoDB Compass ([schema](scre
 - **Reviews can run into hundreds per product,** so they sit in their own collection and keep product documents small. Q3 shows the aggregation pipeline reporting across all of them.
 
 Other NoSQL models fit less well. Key-value suits simple lookups by one key, which is why AdaLink's shopping carts would use Redis, but it cannot search inside specifications. Column stores suit analysis of huge volumes, and graph databases suit connections such as "customers who bought this also bought". Neither describes a product catalogue or a parcel history.
+
+## Reference: 
+- [mongodb.com/docs/manual/replication](https://www.mongodb.com/docs/manual/replication/)
+
